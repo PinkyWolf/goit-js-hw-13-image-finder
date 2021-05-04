@@ -21,16 +21,16 @@ function imageSearchInputHandler(e) {
   servise.searchQuerry = input.value;
 
   servise.fetchGallery().then(hits => {
-    const markup = buildListItemsTemplate(hits);
-    iserListItems(markup);
+    const markup = buildListTemplate(hits);
+    insertListItems(markup);
   });
   input.value = '';
 }
 
 function loadMoreBtnHandler() {
   servise.fetchGallery().then(hits => {
-    const markup = buildListItemsTemplate(hits);
-    iserListItems(markup);
+    const markup = buildListTemplate(hits);
+    insertListItems(markup);
     window.scrollTo(0, 1000);
 
     window.scrollTo({
@@ -39,10 +39,10 @@ function loadMoreBtnHandler() {
     });
   });
 }
-function iserListItems(items) {
+function insertListItems(items) {
   gallery.insertAdjacentHTML('beforeend', items);
 }
-function buildListItemsTemplate(items) {
+function buildListTemplate(items) {
   return imageList(items);
 }
 function clearListItems() {
