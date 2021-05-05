@@ -37,6 +37,8 @@ function loadMoreBtnHandler() {
       top: 1000,
       behavior: 'smooth',
     });
+  }).catch(function (e) {
+    console.log(e)
   });
 }
 function insertListItems(items) {
