@@ -31,15 +31,21 @@ function loadMoreBtnHandler() {
   servise.fetchGallery().then(hits => {
     const markup = buildListTemplate(hits);
     insertListItems(markup);
-    window.scrollTo(0, 1000);
-
-    window.scrollTo({
-      top: 1000,
-      behavior: 'smooth',
-    });
+    scrollPages(0, 1000);
   }).catch(function (e) {
     console.log(e)
   });
+}
+function scrollPages() {
+//получаем высоту страницы
+const scrollValue = document.documentElement.scrollHeight;
+//реализуем асинхронный scrollTo, чтобы метод корректно работал
+setTimeout(() => {
+window.scrollTo({
+top: scrollValue,
+behavior: 'smooth',
+});
+}, 100);
 }
 function insertListItems(items) {
   gallery.insertAdjacentHTML('beforeend', items);
